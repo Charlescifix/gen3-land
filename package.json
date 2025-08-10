@@ -1,0 +1,27 @@
+{
+  "name": "gen3block-landing",
+  "version": "1.0.0",
+  "description": "Gen3block - Advanced Modular AI Ecosystem Landing Page",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "gen3block",
+    "ai",
+    "landing-page",
+    "modular-ai",
+    "neural-network"
+  ],
+  "author": "Charles Cifix",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "compression": "^1.7.4",
+    "helmet": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

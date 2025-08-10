@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GEN3BLOCK — Advanced Modular AI Ecosystem</title>
+  <meta name="description" content="GEN3BLOCK is a modular AI ecosystem building cutting-edge AI solutions, research, and training." />
+  <style>
+    :root{
+      --ink:#0A1024; --text:#101426; --muted:#4B587A;
+      --edge:#DFE8F5; --edge-2:#C9D6EE;
+      --ice:#B8F1FF; --cloud:#E8F4FF; --mint:#7BDFF2; --rose:#FFDEE2; --violet:#7A5CFF;
+      --blue:#2563EB; --blue-600:#1D4ED8; --teal:#00B8A9; --amber:#FFB020;
+      --brand-bg: linear-gradient(90deg, #0E132F 0%, #141C4F 60%, #182463 100%);
+      --brand-border: #273066;
+      --glass-bg: rgba(255,255,255,.62); --glass-brd: rgba(255,255,255,.45);
+      --shadow: 0 14px 42px rgba(11,16,32,.16);
+      --radius-lg: 26px; --radius: 18px;
+
+      /* Buttons (global base) */
+      --btn-pad-y: 0.72rem; --btn-pad-x: 1.05rem; --btn-font: 1rem;
+
+      /* Pastel tiles for About */
+      --tile-1: #E7F5FF;  --tile-2: #ECFFFB;  --tile-3: #FFF2F7;  --tile-4: #F2F1FF;
+      --tile-1-bd: #CFE8FF; --tile-2-bd: #C4FFF3; --tile-3-bd: #FFD1E1; --tile-4-bd: #DDD9FF;
+
+      /* Jelly tile colors */
+      --j-ai: #EAF2FF;       --j-ai-bd:#CFE0FF;
+      --j-impl:#E9FFF7;      --j-impl-bd:#BFF5E3;
+      --j-train:#FFF6E8;     --j-train-bd:#FFE2B8;
+      --j-assess:#F4EFFF;    --j-assess-bd:#DED1FF;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--text);
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans";
+      background:
+        radial-gradient(1200px 800px at 15% 10%, #FFFFFF 0%, #F7FBFF 25%, #ECF7FF 55%, #F8F5FF 85%),
+        radial-gradient(900px 700px at 85% 20%, #FFF5F7 0%, #EAF9FF 60%, transparent 100%),
+        linear-gradient(180deg, #FFFFFF 0%, #F7FBFF 100%);
+      background-attachment:fixed;
+    }
+    body::before{
+      content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+    }
+    .wrap{width:min(1180px,92vw); margin-inline:auto}
+    .section{padding:clamp(48px,6vw,96px) 0}
+    /* Header (expanded) */
+    .navbar{position:sticky; top:0; z-index:40; background:var(--brand-bg); border-bottom:1px solid var(--brand-border); color:#EAF1FF; backdrop-filter:blur(12px)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:36px; height:88px}
+    .brand{ text-decoration:none; color:#fff; font-weight:1000; letter-spacing:.8px; font-size: clamp(1.8rem,3.8vw,2.6rem)}
+    .nav-links{display:flex; gap:28px; align-items:center}
+    .nav-links a{ color:#EAF1FF; text-decoration:none; font-weight:800; font-size:1.02rem; padding:.2rem .2rem }
+    .nav-links a:hover{ text-decoration:underline }
+    .nav-actions{display:flex; align-items:center; gap:.9rem}
+    .nav-actions .btn{ --btn-pad-y: .8rem; --btn-pad-x: 1.2rem; --btn-font: 1.04rem } /* slightly larger than base */
+    /* Buttons */
+    .btn{ --_bg:#111; --_bg2:#000; --_txt:#fff; --_ring: rgba(37,99,235,.35);
+      display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+      padding:var(--btn-pad-y) var(--btn-pad-x); font-weight:800; font-size:var(--btn-font);
+      color:var(--_txt); text-decoration:none; border:0; cursor:pointer; user-select:none;
+      border-radius:999px; box-shadow:0 10px 22px rgba(16,24,64,.14), inset 0 -2px 0 rgba(0,0,0,.06);
+      background:linear-gradient(180deg,var(--_bg) 0%,var(--_bg2) 100%);
+      transform:translateY(0); transition:transform .08s ease, box-shadow .18s ease, filter .18s ease; position:relative; isolation:isolate;
+    }
+    .btn::after{content:""; position:absolute; inset:2px; border-radius:999px; border:1px solid rgba(255,255,255,.18); pointer-events:none}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 14px 26px rgba(16,24,64,.2)}
+    .btn:active{transform:translateY(0)}
+    .btn-primary{--_bg:#3B82F6; --_bg2:#1D4ED8; --_ring: rgba(59,130,246,.35)}
+    .btn-neo{--_bg:#00D1B2; --_bg2:#00A690; --_txt:#051414; --_ring: rgba(0,209,178,.35)}
+    .btn-violet{--_bg:#8B5CF6; --_bg2:#6D28D9}
+    .btn-amber{--_bg:#FFB020; --_bg2:#E09400; --_txt:#2A1600}
+    .btn-rose{--_bg:#FF6B88; --_bg2:#FF3B6A; --_txt:#2A0A12}
+    .btn-sm{ --btn-pad-y: .55rem; --btn-pad-x: .9rem; --btn-font: .95rem }
+    /* Hero */
+    .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(18px,3.8vw,48px); align-items:center}
+    .eyebrow{display:inline-flex; align-items:center; gap:.5rem; padding:.4rem .7rem; border-radius:999px; font-weight:800; color:#0b1020; background:linear-gradient(90deg,var(--mint),var(--ice)); box-shadow:0 6px 18px rgba(10,130,170,.22)}
+    h1{margin:.4rem 0 .5rem; font-size:clamp(2.1rem,4.4vw,4rem); line-height:1.04; color:var(--ink); letter-spacing:-.02em}
+    .lead{margin:0 0 1rem; max-width:62ch; color:var(--muted)}
+    .photo{position:relative; aspect-ratio:4/3; border-radius:26px; overflow:hidden; box-shadow:var(--shadow); background:#DDE6F7}
+    .photo img{width:100%; height:100%; object-fit:cover; display:block}
+    .glimmer{position:absolute; inset:auto auto 12px 12px; padding:.48rem .78rem; border-radius:999px; font-weight:800; color:#0b1020; background:rgba(255,255,255,.78); border:1px solid var(--glass-brd)}
+    /* Grid cards */
+    .grid{display:grid; gap:20px; grid-template-columns:repeat(12,1fr)}
+    .card{grid-column:span 4; padding:20px; border-radius:20px; background:var(--glass-bg); border:1px solid var(--glass-brd); backdrop-filter:blur(14px); box-shadow:0 16px 38px rgba(20,30,70,.12)}
+    .card:hover{ transform: translateY(-1px); box-shadow:0 20px 46px rgba(20,30,70,.16) }
+    .card h3{margin:.1rem 0 .4rem; font-size:1.12rem; color:#0B1535}
+    .card p{margin:0; color:var(--muted)}
+    @media (max-width:960px){ .hero{grid-template-columns:1fr} .card{grid-column:span 6}}
+    @media (max-width:640px){ .card{grid-column:span 12}}
+    /* About – two-column layout with image */
+    .about h2{margin:0 0 .6rem; font-size:clamp(1.7rem,3.1vw,2.4rem); color:var(--ink)}
+    .about .sub{color:var(--muted); max-width:70ch}
+    .about .cols{ display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; align-items:start; margin-top:14px }
+    .about .points{display:grid; grid-template-columns:repeat(2,1fr); gap:12px 18px; margin-top:12px}
+    .about .pt{ border-radius:14px; padding:12px 14px; border:1px solid transparent; box-shadow:0 10px 20px rgba(20,30,70,.08); font-size:.96rem }
+    .pt.modular{ background:var(--tile-1); border-color:var(--tile-1-bd) }
+    .pt.empower{ background:var(--tile-2); border-color:var(--tile-2-bd) }
+    .pt.growth{  background:var(--tile-3); border-color:var(--tile-3-bd) }
+    .pt.impact{  background:var(--tile-4); border-color:var(--tile-4-bd) }
+    .about .photo-side{ position:relative; aspect-ratio: 4/3; border-radius:24px; overflow:hidden; box-shadow: var(--shadow) }
+    .about .photo-side img{ width:100%; height:100%; object-fit:cover }
+    @media (max-width:900px){ 
+      .about .cols{ grid-template-columns:1fr } 
+      .footer-row{ justify-content:center; text-align:center }
+      .footer-center{ justify-content:center }
+    }
+    @media (max-width:640px){
+      .socials{ margin:12px auto }
+    }
+    /* Forms */
+    form{ display:grid; gap:12px }
+    input, select, textarea, button{ font:inherit }
+    .field{ display:grid; gap:6px }
+    .field input, .field select, .field textarea{
+      padding:.78rem .95rem; border-radius:14px; border:1px solid var(--edge);
+      background:#fff; box-shadow:inset 0 1px 0 #fff, 0 6px 14px rgba(20,30,70,.05)
+    }
+    .form-panel{ padding:20px; border-radius:20px; background:var(--glass-bg); border:1px solid var(--glass-brd); backdrop-filter:blur(14px); box-shadow:var(--shadow) }
+    /* Jelly consultation tiles */
+    .jelly-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin:6px 0 6px }
+    .jelly{ position:relative; padding:12px 10px; border-radius:14px; border:1px solid var(--edge); text-align:center; cursor:pointer; transition: transform .08s ease, box-shadow .18s ease, border-color .2s ease; box-shadow:0 8px 18px rgba(20,30,70,.08) }
+    .jelly input{ position:absolute; inset:0; opacity:0; cursor:pointer }
+    .jelly .emoji{ display:block; font-size:1.2rem }
+    .jelly .label{ font-weight:800; font-size:.96rem; color:#0B1535 }
+    .jelly:hover{ transform: translateY(-2px) }
+    .j-ai{ background:var(--j-ai); border-color:var(--j-ai-bd) }
+    .j-impl{ background:var(--j-impl); border-color:var(--j-impl-bd) }
+    .j-train{ background:var(--j-train); border-color:var(--j-train-bd) }
+    .j-assess{ background:var(--j-assess); border-color:var(--j-assess-bd) }
+    .jelly.selected{ box-shadow:0 12px 26px rgba(37,99,235,.18); border-color:#BBD1FF }
+    @media (max-width:900px){ .jelly-grid{ grid-template-columns: repeat(2, 1fr) } }
+    @media (max-width:540px){ .jelly-grid{ grid-template-columns: 1fr } }
+    /* Core Solutions title badges */
+    .chip{ display:inline-block; padding:.28rem .54rem; border-radius:10px; font-weight:800; font-size:.92rem; letter-spacing:.2px; }
+    .chip.consult{ background:#E7F0FF; color:#1A2A61; border:1px solid #CFE0FF }
+    .chip.dev{ background:#E9FFF7; color:#0F3B34; border:1px solid #BFEFE3 }
+    .chip.train{ background:#FFF6E8; color:#5A3200; border:1px solid #FFE2B8 }
+    /* Footer (horizontal, replicated content) */
+    .footer{ background:var(--brand-bg); color:#DDE7FF; border-top:1px solid var(--brand-border); padding:clamp(20px,3.5vw,28px) 0 }
+    .footer a{ color:#EAF1FF; text-decoration:none }
+    .footer a:hover{ text-decoration:underline }
+    .footer-row{ display:flex; gap:20px; align-items:center; justify-content:space-between; flex-wrap:wrap }
+    .footer-left{ display:flex; align-items:center; gap:18px; flex-wrap:wrap }
+    .footer-center{ display:flex; align-items:center; flex-wrap:wrap; flex:1 }
+    .footer .sep{ opacity:.35 }
+    .socials{ display:flex; align-items:center; gap:12px }
+    .socials a{ display:flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.1); transition:background 0.2s ease }
+    .socials a:hover{ background:rgba(255,255,255,0.2); text-decoration:none }
+    .socials a svg{ width:18px; height:18px; display:block }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="navbar">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">GEN3BLOCK</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#solutions">Services</a>
+        <a href="#opportunities">Opportunities</a>
+        <a href="#careers">Careers</a>
+        <a href="#footer-contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-neo" href="#demo">Book Demo</a>
+        <a class="btn btn-primary" href="#consultation">Get Consultation</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="section">
+      <div class="wrap hero">
+        <div>
+          <span class="eyebrow">Modular AI, assembled for impact</span>
+          <h1>Build, combine, and scale AI — without the complexity.</h1>
+          <p class="lead">We design self-contained AI modules for consulting, software, and training. Start small, then assemble them into powerful, production-ready systems as your needs grow.</p>
+          <div style="display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.9rem">
+            <a class="btn btn-violet" href="#demo">Book AI Demo</a>
+            <a class="btn btn-amber" href="#consultation">Book Free Consultation</a>
+          </div>
+        </div>
+        <div class="photo">
+          <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=1600&auto=format&fit=crop" alt="Dark blue neural network with colorful connections representing Gen3block's modular AI ecosystem" loading="eager" />
+          <span class="glimmer">Trusted delivery • UK</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About with side image -->
+    <section class="section about" id="about">
+      <div class="wrap">
+        <h2>About GEN3BLOCK</h2>
+        <div class="cols">
+          <div>
+            <p class="sub"><strong>Our Vision.</strong> GEN3BLOCK is a modular AI ecosystem focused on building cutting-edge AI solutions, creating informative content, and driving impactful AI research. We develop self-contained AI products that can be combined to create scalable, real-world solutions across diverse industries.</p>
+            <p class="sub">By empowering individuals through hands-on learning, expert-led training, and collaborative development, we create a cycle where better solutions improve lives — and empowered individuals contribute back to the ecosystem. Technology and talent grow stronger together in an inclusive, forward-thinking environment.</p>
+            <div class="points">
+              <div class="pt modular"><strong>Modular Design</strong><br/>Self-contained products that combine seamlessly.</div>
+              <div class="pt empower"><strong>Empowerment</strong><br/>Training individuals for the AI revolution.</div>
+              <div class="pt growth"><strong>Cycle of Growth</strong><br/>Continuous improvement through collaboration.</div>
+              <div class="pt impact"><strong>Global Impact</strong><br/>Solutions that transform industries worldwide.</div>
+            </div>
+          </div>
+          <div class="photo-side">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop" alt="People collaborating with modern technology dashboards" loading="lazy"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Solutions with shaded title chips -->
+    <section class="section" id="solutions">
+      <div class="wrap">
+        <h2 style="margin:0 0 16px; font-size:clamp(1.7rem,3vw,2.4rem); color:var(--ink)">Our Core AI Solutions</h2>
+        <div class="grid">
+          <article class="card">
+            <h3><span class="chip consult">AI Consultancy Services</span></h3>
+            <p>Strategic guidance, implementation roadmaps, and custom AI solutions tailored to your industry needs.</p>
+            <ul>
+              <li>Strategic AI Implementation</li>
+              <li>Technology Assessment</li>
+              <li>ROI Optimization</li>
+              <li>Custom AI Architecture</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3><span class="chip dev">AI Software Development</span></h3>
+            <p>Powerful, scalable AI applications from ML models to intelligent automation systems.</p>
+            <ul>
+              <li>Custom AI Applications</li>
+              <li>Machine Learning Models</li>
+              <li>Intelligent Automation</li>
+              <li>API Integration</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3><span class="chip train">AI Education & Training</span></h3>
+            <p>Comprehensive training from beginner to advanced ML and data science specializations.</p>
+            <ul>
+              <li>Hands-on AI Workshops</li>
+              <li>Certification Programs</li>
+              <li>Corporate Training</li>
+              <li>Mentorship Programs</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Opportunities (small buttons) -->
+    <section class="section" id="opportunities">
+      <div class="wrap">
+        <h2 style="margin:0 0 16px; font-size:clamp(1.7rem,3vw,2.4rem); color:var(--ink)">Opportunities & Offerings</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>⚡ Accelerator</h3>
+            <p>Apply to our AI accelerator to develop and deploy impactful solutions with expert support.</p>
+            <a class="btn btn-primary btn-sm" href="/accelerator">Apply to Accelerator</a>
+          </article>
+          <article class="card">
+            <h3>⚡ Partnership</h3>
+            <p>Co-build products and services with us. Let’s combine strengths to scale value.</p>
+            <a class="btn btn-neo btn-sm" href="/partnership">Start a Partnership</a>
+          </article>
+          <article class="card">
+            <h3>⚡ Innovation</h3>
+            <p>Explore pilots and joint R&amp;D. Test new ideas with managed risk and fast learning loops.</p>
+            <a class="btn btn-violet btn-sm" href="/innovation">Propose an Innovation</a>
+          </article>
+          <article class="card">
+            <h3>⚡ Competition</h3>
+            <p>Join challenges that solve pressing problems while showcasing your skills.</p>
+            <a class="btn btn-amber btn-sm" href="/competition">Enter a Competition</a>
+          </article>
+          <article class="card">
+            <h3>⚡ Community</h3>
+            <p>Meet peers, share knowledge, and grow with curated events and resources.</p>
+            <a class="btn btn-rose btn-sm" href="/community">Join the Community</a>
+          </article>
+          <article class="card">
+            <h3>⚡ Consultation</h3>
+            <p>Free advisory call to map your next two AI modules and success metrics.</p>
+            <a class="btn btn-primary btn-sm" href="#consultation">Book a Consultation</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Book AI Demo -->
+    <section class="section" id="demo">
+      <div class="wrap">
+        <h2 style="margin:0 0 14px; font-size:clamp(1.7rem,3vw,2.4rem); color:var(--ink)">Book Your AI Demo</h2>
+        <div class="form-panel">
+          <form action="/book-demo" method="post" id="demoForm">
+            <div class="grid">
+              <div class="field" style="grid-column:span 6">
+                <label for="demo_service">Select Service</label>
+                <select id="demo_service" name="service">
+                  <option value="ai_consultancy">AI Consultancy</option>
+                  <option value="software_development">Software Development</option>
+                  <option value="training">Training Programs</option>
+                  <option value="custom_solution">Custom Solution</option>
+                </select>
+              </div>
+              <div class="field" style="grid-column:span 6">
+                <label for="demo_email">Work Email</label>
+                <input type="email" id="demo_email" name="email" required>
+              </div>
+              <div class="field" style="grid-column:span 6">
+                <label for="demo_name">Full Name</label>
+                <input type="text" id="demo_name" name="full_name" required>
+              </div>
+              <div class="field" style="grid-column:span 6">
+                <label for="demo_company">Company</label>
+                <input type="text" id="demo_company" name="company">
+              </div>
+              <div class="field" style="grid-column:span 12">
+                <label for="demo_notes">What would you like to see?</label>
+                <textarea id="demo_notes" name="notes" rows="4" placeholder="Tell us about your use case"></textarea>
+              </div>
+            </div>
+            <div style="display:flex; gap:.6rem; margin-top:6px">
+              <button class="btn btn-violet" type="submit">Schedule Demo</button>
+              <a class="btn btn-neo" href="#consultation">Prefer a free consultation?</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Free Consultation (colored, emoji-specific jelly tiles) -->
+    <section class="section" id="consultation">
+      <div class="wrap">
+        <h2 style="margin:0 0 14px; font-size:clamp(1.7rem,3vw,2.4rem); color:var(--ink)">Book Free Consultation</h2>
+        <div class="form-panel">
+          <form action="/consultation" method="post" id="consultationForm">
+            <div class="jelly-grid" id="jellyGrid">
+              <label class="jelly j-ai">
+                <input type="radio" name="consultation_type" value="ai_strategy" checked>
+                <span class="emoji">🧠</span>
+                <span class="label">AI Strategy</span>
+              </label>
+              <label class="jelly j-impl">
+                <input type="radio" name="consultation_type" value="implementation_planning">
+                <span class="emoji">🛠️</span>
+                <span class="label">Implementation</span>
+              </label>
+              <label class="jelly j-train">
+                <input type="radio" name="consultation_type" value="training_needs">
+                <span class="emoji">🎓</span>
+                <span class="label">Training</span>
+              </label>
+              <label class="jelly j-assess">
+                <input type="radio" name="consultation_type" value="technology_assessment">
+                <span class="emoji">🔍</span>
+                <span class="label">Tech Assessment</span>
+              </label>
+            </div>
+            <div class="grid">
+              <div class="field" style="grid-column:span 6">
+                <label for="c_name">Full Name</label>
+                <input type="text" id="c_name" name="full_name" required>
+              </div>
+              <div class="field" style="grid-column:span 6">
+                <label for="c_email">Email Address</label>
+                <input type="email" id="c_email" name="email" required>
+              </div>
+              <div class="field" style="grid-column:span 6">
+                <label for="c_industry">Industry</label>
+                <select id="c_industry" name="industry">
+                  <option value="">Select your industry</option>
+                  <option>Healthcare</option><option>Finance</option><option>Retail</option>
+                  <option>Manufacturing</option><option>Education</option><option>Other</option>
+                </select>
+              </div>
+              <div class="field" style="grid-column:span 6">
+                <label for="c_time">Preferred Time</label>
+                <select id="c_time" name="preferred_time">
+                  <option value="morning">Morning (9–12)</option>
+                  <option value="afternoon">Afternoon (12–5)</option>
+                  <option value="evening">Evening (5–8)</option>
+                </select>
+              </div>
+              <div class="field" style="grid-column:span 12">
+                <label for="c_msg">Your goals</label>
+                <textarea id="c_msg" name="message" rows="3" placeholder="A short note helps us prepare better"></textarea>
+              </div>
+            </div>
+            <div style="display:flex; gap:.6rem; margin-top:6px">
+              <button class="btn btn-primary" type="submit">Book Consultation</button>
+              <a class="btn btn-amber" href="#demo">Or book an AI Demo</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (horizontal, replicated content) -->
+  <footer class="footer" aria-label="Footer" id="footer-contact">
+    <div class="wrap">
+      <div class="footer-row">
+        <div class="footer-left">
+          <strong>GEN3BLOCK</strong>
+          <span class="sep">|</span>
+          <span>SIC: 62020 · 62012 · 85590</span>
+          <span class="sep">|</span>
+          <span>Registered in the United Kingdom</span>
+        </div>
+        <div class="socials">
+          <a href="https://linkedin.com" title="LinkedIn" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="#0A66C2" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.1c.7-1.2 2.4-2.5 4.9-2.5 5.2 0 6.1 3.4 6.1 7.9V24h-5v-7.1c0-1.7 0-3.9-2.4-3.9s-2.8 1.9-2.8 3.8V24h-5V8z"/></svg>
+          </a>
+          <a href="https://discord.gg" title="Discord" aria-label="Discord">
+            <svg viewBox="0 0 245 240" aria-hidden="true"><path fill="#5865F2" d="M104.4 104.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zm36.2 0c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z"/><path fill="#5865F2" d="M189.5 20h-134C24.2 20 0 44.2 0 73.5v93C0 195.8 24.2 220 55.5 220h113.2l-5.3-18.5 12.8 11.9 12.1 11.2 21.3 19.4v-43.9c20.9-3.4 36.6-21.5 36.6-43.7v-86.9C246.2 44.2 221.9 20 189.5 20zm-33.1 130.6s-3.1-3.7-5.6-6.9c11.1-3.2 15.3-10.3 15.3-10.3-3.5 2.3-6.8 3.9-9.8 5-4.2 1.7-8.3 2.8-12.2 3.4-8.1 1.5-15.5 1.1-21.9-.1-4.8-.9-8.9-2.1-12.3-3.4-1.9-.7-3.9-1.6-5.9-2.7-.2-.1-.4-.2-.6-.3-.1-.1-.2-.1-.3-.2-1.4-.8-2.2-1.4-2.2-1.4s4.1 7 15 10.2c-2.5 3.3-5.7 7.2-5.7 7.2-18.8-.6-25.9-12.9-25.9-12.9 0-27.3 12.2-49.5 12.2-49.5 12.2-9.1 23.8-8.8 23.8-8.8l.8.9c-15.3 4.4-22.3 11.1-22.3 11.1s1.9-1 5.1-2.3c9.2-4 16.6-5.1 19.7-5.4.5-.1.9-.2 1.4-.2 5-0.6 10.6-0.8 16.3-.2 7.7.9 16 3.1 24.5 7.6 0 0-6.7-6.4-21.2-10.8l1.1-1.2s11.6-.3 23.8 8.8c0 0 12.2 22.2 12.2 49.5 0-.1-7.1 12.3-26 12.9z"/></svg>
+          </a>
+          <a href="https://youtube.com" title="YouTube" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="#FF0000" aria-hidden="true"><path d="M23.5 6.2c-.3-1.2-1.2-2.1-2.4-2.4C19.1 3.3 12 3.3 12 3.3s-7.1 0-9.1.5C1.7 4.1.8 5 .5 6.2.1 8.3.1 12 .1 12s0 3.7.4 5.8c.3 1.2 1.2 2.1 2.4 2.4 2 .5 9.1.5 9.1.5s7.1 0 9.1-.5c1.2-.3 2.1-1.2 2.4-2.4.4-2.1.4-5.8.4-5.8s0-3.7-.4-5.8zM9.7 15.5v-7L15.8 12l-6.1 3.5z"/></svg>
+          </a>
+          <a href="https://facebook.com" title="Facebook" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M22.675 0h-21.35C.595 0 0 .595 0 1.326v21.348C0 23.405.595 24 1.326 24h11.495v-9.294H9.691V11.01h3.13V8.41c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.311h3.59l-.467 3.696h-3.123V24h6.127C23.405 24 24 23.405 24 22.674V1.326C24 .595 23.405 0 22.675 0z"/></svg>
+          </a>
+          <a href="https://twitter.com" title="X" aria-label="X">
+            <svg viewBox="0 0 24 24" fill="#000" aria-hidden="true"><path d="M18.244 2H21.5l-7.62 8.715L22.5 22h-6.03l-4.72-5.495L6.21 22H2.955l8.14-9.31L2 2h6.12l4.28 4.97L18.244 2zM16.7 20h1.67L7.39 4H5.62L16.7 20z"/></svg>
+          </a>
+          <a href="https://instagram.com" title="Instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="#E1306C" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.4.4.6.2 1 .4 1.5.8.5.3.9.8 1.2 1.2.4.5.6.9.8 1.5.2.5.3 1.2.4 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.4-.2.6-.4 1-.8 1.5-.3.5-.8.9-1.2 1.2-.5.4-.9.6-1.5.8-.5.2-1.2.3-2.4.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.4-.4-.6-.2-1-.4-1.5-.8-.5-.3-.9-.8-1.2-1.2-.4-.5-.6-.9-.8-1.5-.2-.5-.3-1.2-.4-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.4.2-.6.4-1 .8-1.5.3-.5.8-.9 1.2-1.2.5-.4.9-.6 1.5-.8.5-.2 1.2-.3 2.4-.4C8.4 2.2 8.8 2.2 12 2.2m0-2.2C8.7 0 8.3 0 7 0 5.7 0 5 0 4.5.1c-.7.1-1.3.3-1.9.5-.6.2-1.2.5-1.7.9-.6.4-1 .9-1.5 1.5-.4.5-.7 1.1-.9 1.7-.2.6-.4 1.2-.5 1.9C-1 8-1 8.7-1 10s0 1.7.1 3c.1.7.3 1.3.5 1.9.2.6.5 1.2.9 1.7.4.6.9 1.1 1.5 1.5.5.4 1.1.7 1.7.9.6.2 1.2.4 1.9.5.5.1 1.2.1 2.5.1s1.7 0 3 0 1.7 0 3 0 1.7 0 2.5-.1c.7-.1 1.3-.3 1.9-.5.6-.2 1.2-.5 1.7-.9.6-.4 1.1-.9 1.5-1.5.4-.5.7-1.1.9-1.7.2-.6.4-1.2.5-1.9.1-1.3.1-2 .1-3.3s0-1.7-.1-3c-.1-.7-.3-1.3-.5-1.9-.2-.6-.5-1.2-.9-1.7-.4-.6-.9-1.1-1.5-1.5-.5-.4-1.1-.7-1.7-.9-.6-.2-1.2-.4-1.9-.5C19 0 18.3 0 17 0s-1.7 0-5 0z"/><circle cx="12" cy="12" r="3.5"/></svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-row" style="margin-top:16px">
+        <div class="footer-center">
+          <span><strong>Services:</strong> AI Strategy Consulting · Custom AI Development · Machine Learning Solutions · AI Training Programs · Technology Assessment · Implementation Support</span>
+        </div>
+        <form action="/subscribe" method="post" style="display:flex; gap:10px; align-items:center">
+          <label for="sub_email" style="display:none">Email</label>
+          <input id="sub_email" type="email" name="email" placeholder="Subscribe for updates" required style="padding:.6rem .9rem; border-radius:999px; border:1px solid #3B4AA0; background:#fff; color:#0A1024">
+          <button class="btn btn-neo btn-sm" type="submit">Subscribe</button>
+        </form>
+      </div>
+      
+      <div class="footer-row" style="margin-top:16px">
+        <div class="footer-center">
+          <span><strong>Opportunities:</strong> Graduate Programs · Startup Acceleration · Partnership Network · Innovation Lab Access · AI Competitions · Global Community</span>
+        </div>
+      </div>
+      
+      <div class="footer-row" style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.1); padding-top:16px; justify-content:center; font-size:0.9rem">
+        <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; justify-content:center">
+          <span>© <span id="y">2025</span> GEN3BLOCK. All rights reserved.</span>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/cookie-policy">Cookie Policy</a>
+          <a href="/terms">Terms of Service</a>
+          <a href="/gdpr">GDPR Compliance</a>
+          <a href="/accessibility">Accessibility</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById('y') && (document.getElementById('y').textContent = new Date().getFullYear());
+      // Jelly tile selected state
+      document.querySelectorAll('.jelly').forEach(el => {
+        el.addEventListener('click', () => {
+          document.querySelectorAll('.jelly').forEach(j => j.classList.remove('selected'));
+          el.classList.add('selected');
+          el.querySelector('input').checked = true;
+        });
+      });
+    </script>
+  </footer>
+</body>
+</html>
