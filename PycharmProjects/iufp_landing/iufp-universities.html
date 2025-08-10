@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Universities & Progression — IUFP</title>
+  <meta name="description" content="IUFP university progression: recognition, partner universities, degree pathways, and requirements for first‑year entry." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --brand-nav-bg:#0b2447;           
+      --brand-nav-text:#ffffff;
+      --brand-primary:#19376d;          
+      --brand-on-primary:#ffffff;
+      --brand-footer-bg:#0b2447;
+      --brand-footer-text:#ffffff;
+      --tint-a: rgba(25,55,109,.06);
+      --tint-b: rgba(20,184,166,.10);
+      --tint-c: rgba(167,139,250,.12);
+    }
+    html,body{scroll-behavior:smooth}
+    .brand-header{background-color:var(--brand-nav-bg);color:var(--brand-nav-text)}
+    .brand-link{color:var(--brand-nav-text)}
+    .brand-primary{background-color:var(--brand-primary);color:var(--brand-on-primary)}
+    .brand-footer{background-color:var(--brand-footer-bg);color:var(--brand-footer-text)}
+    .crystal{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+      background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.06));
+      border:1px solid rgba(0,0,0,.06);box-shadow:0 10px 24px rgba(0,0,0,.10);transition:transform .12s ease, box-shadow .2s ease}
+    .crystal:hover{transform:translateY(-2px) scale(1.01)}
+    .chip{display:inline-block;padding:.375rem .75rem;border-radius:9999px;font-weight:600}
+    .badge{border:1px solid rgba(0,0,0,.08);background:#fff}
+    .cta{font-weight:800;border:1px solid rgba(255,255,255,.25)}
+    .cta--student{background:linear-gradient(180deg, rgba(20,184,166,.95), rgba(20,184,166,.85)); color:#06223e}
+    .cta--partner{background:linear-gradient(180deg, rgba(167,139,250,.95), rgba(167,139,250,.85)); color:#0a1442}
+    .cta:hover{filter:saturate(110%); box-shadow:0 12px 26px rgba(0,0,0,.18); transform:translateY(-3px) scale(1.02)}
+    /* Table styles */
+    .table-wrap {overflow-x:auto}
+    table.fancy {width:100%; border-collapse:separate; border-spacing:0; border-radius:16px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,.06)}
+    table.fancy thead th {text-align:left; font-weight:800; background:var(--brand-nav-bg); color:#fff; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,.1)}
+    table.fancy tbody td {padding:14px 16px; border-bottom:1px solid rgba(0,0,0,.06);}
+    table.fancy tbody tr:nth-child(odd){background:rgba(11,36,71,.035)}
+    table.fancy a {text-decoration:underline; text-underline-offset:2px}
+    /* Tabs */
+    .tab{cursor:pointer; padding:.6rem 1rem; border-radius:9999px; font-weight:700; border:1px solid rgba(0,0,0,.08)}
+    .tab.active{background:var(--brand-primary); color:#fff; border-color:transparent}
+    .tab[data-tab="direct"].active{background: linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(34, 197, 94, 0.15)) !important; color: #065f46 !important; border: 2px solid rgba(34, 197, 94, 0.4) !important;}
+    .tab[data-tab="iy1"].active{background: linear-gradient(135deg, rgba(147, 51, 234, 0.25), rgba(147, 51, 234, 0.15)) !important; color: #581c87 !important; border: 2px solid rgba(147, 51, 234, 0.4) !important;}
+  </style>
+</head>
+<body class="bg-white text-slate-900">
+  <!-- Header -->
+  <header class="brand-header">
+    <div class="max-w-7xl mx-auto flex items-center justify-between p-3 md:p-4">
+      <a href="iufp-landing.html" class="flex items-center gap-3">
+        <img src="iufp-logo.jpg" alt="IUFP logo" class="h-16 w-auto md:h-20" />
+      </a>
+      <nav class="hidden md:flex gap-7 text-base md:text-lg font-semibold">
+        <a class="brand-link hover:opacity-90" href="iufp-landing.html">Home</a>
+        <a class="brand-link hover:opacity-90" href="/aboutus/">About IUFP</a>
+        <a class="brand-link hover:opacity-90" href="/students/">Students</a>
+        <a class="brand-link hover:opacity-90" href="iufp-universities.html">Universities</a>
+        <a class="brand-link hover:opacity-90" href="/partner-schools/">Partner Schools</a>
+        <a class="brand-link hover:opacity-90" href="/vle/">VLE</a>
+        <a class="brand-link hover:opacity-90" href="/contact-us/">Contact Us</a>
+        <a class="brand-link hover:opacity-90" href="/payment/">Payments</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="max-w-7xl mx-auto px-4 py-10 md:py-16">
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-black leading-tight">Universities & Progression</h1>
+          <p class="mt-4 text-lg opacity-95">
+            IUFP graduates progress to first-year degree study at recognised universities through formal
+            <strong>Progression Agreements</strong> and <strong>case-by-case</strong> acceptance, subject to relevant electives and space.
+          </p>
+          <div class="mt-6 flex items-center gap-3 crystal rounded-xl px-3 py-2 w-fit">
+            <img src="athe-logo.png" class="h-9 w-auto" alt="ATHE Endorsed Programme" />
+            <p class="text-sm leading-snug">
+              <strong>ATHE Endorsed Programme</strong> — ATHE is regulated by Ofqual (UK). Certificates of Completion are issued to successful IUFP students.
+            </p>
+          </div>
+        </div>
+        <!-- Framed university photo -->
+        <div class="justify-self-end">
+          <figure class="rounded-2xl p-2 crystal shadow-lg w-[420px] max-w-full">
+            <img class="rounded-xl w-full h-64 object-cover" alt="University campus"
+                 src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1400&auto=format&fit=crop">
+            <figcaption class="text-xs opacity-70 mt-2 px-1">A vibrant campus environment welcoming IUFP graduates.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabs for Partner Routes -->
+    <section class="max-w-7xl mx-auto px-4 pb-6">
+      <div class="flex flex-wrap gap-2">
+        <button class="tab active" data-tab="direct" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.08)); font-weight: 900; border: 2px solid rgba(34, 197, 94, 0.3); color: #065f46;"><strong>Direct Route</strong></button>
+        <button class="tab" data-tab="iy1" style="background: linear-gradient(135deg, rgba(147, 51, 234, 0.15), rgba(147, 51, 234, 0.08)); font-weight: 900; border: 2px solid rgba(147, 51, 234, 0.3); color: #581c87;"><strong>International Year One Route</strong></button>
+      </div>
+    </section>
+
+    <!-- Direct Route Table -->
+    <section id="tab-direct" class="max-w-7xl mx-auto px-4 pb-10">
+      <div class="table-wrap crystal rounded-2xl p-2">
+        <table class="fancy">
+          <thead>
+            <tr><th>University</th><th>Country</th><th>Visit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Aston University</td><td>UK</td><td><a href="https://www.aston.ac.uk" target="_blank" rel="noopener">aston.ac.uk ↗</a></td></tr>
+            <tr><td>Anglia Ruskin University</td><td>UK</td><td><a href="https://www.aru.ac.uk" target="_blank" rel="noopener">aru.ac.uk ↗</a></td></tr>
+            <tr><td>Keele University</td><td>UK</td><td><a href="https://www.keele.ac.uk" target="_blank" rel="noopener">keele.ac.uk ↗</a></td></tr>
+            <tr><td>Leeds Beckett University</td><td>UK</td><td><a href="https://www.leedsbeckett.ac.uk" target="_blank" rel="noopener">leedsbeckett.ac.uk ↗</a></td></tr>
+            <tr><td>Middlesex University</td><td>UK / Dubai / Mauritius</td><td><a href="https://www.mdx.ac.uk" target="_blank" rel="noopener">mdx.ac.uk ↗</a></td></tr>
+            <tr><td>St Mary’s University, Twickenham</td><td>UK</td><td><a href="https://www.stmarys.ac.uk" target="_blank" rel="noopener">stmarys.ac.uk ↗</a></td></tr>
+            <tr><td>University of Bradford</td><td>UK</td><td><a href="https://www.bradford.ac.uk" target="_blank" rel="noopener">bradford.ac.uk ↗</a></td></tr>
+            <tr><td>University of Chester</td><td>UK</td><td><a href="https://www1.chester.ac.uk" target="_blank" rel="noopener">chester.ac.uk ↗</a></td></tr>
+            <tr><td>University of Exeter</td><td>UK</td><td><a href="https://www.exeter.ac.uk" target="_blank" rel="noopener">exeter.ac.uk ↗</a></td></tr>
+            <tr><td>University of Greenwich</td><td>UK</td><td><a href="https://www.gre.ac.uk" target="_blank" rel="noopener">gre.ac.uk ↗</a></td></tr>
+            <tr><td>University of Hertfordshire</td><td>UK</td><td><a href="https://www.herts.ac.uk" target="_blank" rel="noopener">herts.ac.uk ↗</a></td></tr>
+            <tr><td>University of Kent</td><td>UK</td><td><a href="https://www.kent.ac.uk" target="_blank" rel="noopener">kent.ac.uk ↗</a></td></tr>
+            <tr><td>University of Portsmouth</td><td>UK</td><td><a href="https://www.port.ac.uk" target="_blank" rel="noopener">port.ac.uk ↗</a></td></tr>
+            <tr><td>University of Sussex</td><td>UK</td><td><a href="https://www.sussex.ac.uk" target="_blank" rel="noopener">sussex.ac.uk ↗</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-2">Based on IUFP partner information (Direct Route).</p>
+    </section>
+
+    <!-- IY1 Route Table -->
+    <section id="tab-iy1" class="max-w-7xl mx-auto px-4 pb-10 hidden">
+      <div class="table-wrap crystal rounded-2xl p-2">
+        <table class="fancy">
+          <thead>
+            <tr><th>University</th><th>Country</th><th>Visit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Bournemouth University</td><td>UK</td><td><a href="https://www.bournemouth.ac.uk" target="_blank" rel="noopener">bournemouth.ac.uk ↗</a></td></tr>
+            <tr><td>City, University of London</td><td>UK</td><td><a href="https://www.city.ac.uk" target="_blank" rel="noopener">city.ac.uk ↗</a></td></tr>
+            <tr><td>Cranfield University</td><td>UK</td><td><a href="https://www.cranfield.ac.uk" target="_blank" rel="noopener">cranfield.ac.uk ↗</a></td></tr>
+            <tr><td>Nottingham Trent University</td><td>UK</td><td><a href="https://www.ntu.ac.uk" target="_blank" rel="noopener">ntu.ac.uk ↗</a></td></tr>
+            <tr><td>Queen Mary University of London</td><td>UK</td><td><a href="https://www.qmul.ac.uk" target="_blank" rel="noopener">qmul.ac.uk ↗</a></td></tr>
+            <tr><td>University of Birmingham</td><td>UK</td><td><a href="https://www.birmingham.ac.uk" target="_blank" rel="noopener">birmingham.ac.uk ↗</a></td></tr>
+            <tr><td>University of Brighton</td><td>UK</td><td><a href="https://www.brighton.ac.uk" target="_blank" rel="noopener">brighton.ac.uk ↗</a></td></tr>
+            <tr><td>University of Bristol</td><td>UK</td><td><a href="https://www.bristol.ac.uk" target="_blank" rel="noopener">bristol.ac.uk ↗</a></td></tr>
+            <tr><td>University of Essex</td><td>UK</td><td><a href="https://www.essex.ac.uk" target="_blank" rel="noopener">essex.ac.uk ↗</a></td></tr>
+            <tr><td>University of Glasgow</td><td>UK</td><td><a href="https://www.gla.ac.uk" target="_blank" rel="noopener">gla.ac.uk ↗</a></td></tr>
+            <tr><td>University of Liverpool</td><td>UK</td><td><a href="https://www.liverpool.ac.uk" target="_blank" rel="noopener">liverpool.ac.uk ↗</a></td></tr>
+            <tr><td>University of Nottingham</td><td>UK</td><td><a href="https://www.nottingham.ac.uk" target="_blank" rel="noopener">nottingham.ac.uk ↗</a></td></tr>
+            <tr><td>University of the West of England</td><td>UK</td><td><a href="https://www.uwe.ac.uk" target="_blank" rel="noopener">uwe.ac.uk ↗</a></td></tr>
+            <tr><td>University of Westminster</td><td>UK</td><td><a href="https://www.westminster.ac.uk" target="_blank" rel="noopener">westminster.ac.uk ↗</a></td></tr>
+            <tr><td>University of York</td><td>UK</td><td><a href="https://www.york.ac.uk" target="_blank" rel="noopener">york.ac.uk ↗</a></td></tr>
+            <tr><td>TEDI‑London</td><td>UK</td><td><a href="https://tedi-london.ac.uk" target="_blank" rel="noopener">tedi-london.ac.uk ↗</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-2">Based on IUFP partner information (International Year One Route).</p>
+    </section>
+
+    <!-- Pathways (fancy table) -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-3">Degree Progression Pathways</h2>
+      <div class="table-wrap crystal rounded-2xl p-2" style="background:linear-gradient(180deg, rgba(25,55,109,.04), rgba(167,139,250,.04))">
+        <table class="fancy">
+          <thead>
+            <tr><th>Pathway</th><th>Example Degrees</th><th>Suggested IUFP Electives</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Business, Banking, Finance & Management</td><td>Accounting & Finance; Business Management; Economics; Marketing</td><td>Accounting · Business · Economics</td></tr>
+            <tr><td>Computing, IS & Mathematics</td><td>Computer Science; Information Technology; Web Systems; Animation</td><td>Computing · Mathematics (+1)</td></tr>
+            <tr><td>Engineering</td><td>Mechanical; Electrical & Electronic; Civil; Software</td><td>Mathematics · Physics (+1)</td></tr>
+            <tr><td>Law & Criminology</td><td>LLB/BA Law; Criminology; Law & Business</td><td>Law (+2)</td></tr>
+            <tr><td>Social Sciences</td><td>Psychology; International Relations; Development; Environmental Science</td><td>Govt & Politics · Sociology (+1)</td></tr>
+            <tr><td>Media & Cultural Studies</td><td>Media & Cultural Studies; Communication & Media; Journalism</td><td>Business · Sociology (+1)</td></tr>
+            <tr><td>Medical Sciences</td><td>Biomedical Science; Biological Sciences; Biochemistry; Psychological Sciences</td><td>Biology · Chemistry (+Maths/Physics)</td></tr>
+            <tr><td>Life Sciences, Pharmacy & Nursing</td><td>Pharmacy; Nursing; Physiotherapy; Public Health</td><td>Biology · Chemistry (+Maths)</td></tr>
+            <tr><td>Linguistics & Modern Languages</td><td>Modern Languages</td><td>Modern Languages</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Requirements & Support -->
+    <section class="max-w-7xl mx-auto px-4 pb-16">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="crystal rounded-2xl p-6" style="background:var(--tint-a)">
+          <h3 class="text-xl font-bold">Admissions & Requirements</h3>
+          <ul class="mt-2 text-sm font-semibold space-y-2">
+            <li>Age 16+ and completed secondary school</li>
+            <li>Five (5) credits incl. English & Mathematics (or WAEC/NECO/IGCSE)</li>
+            <li>English proficiency by completion (e.g., IELTS 6.5 overall, 6.0 each)</li>
+          </ul>
+          <div class="text-xs opacity-70 mt-2">See Overview for complete details.</div>
+        </div>
+        <div class="crystal rounded-2xl p-6" style="background:var(--tint-b)">
+          <h3 class="text-xl font-bold">Intakes, Exams & Placement</h3>
+          <ul class="mt-2 text-sm font-semibold space-y-2">
+            <li>Intakes: January & September</li>
+            <li>Exams: June/July and December/January (at IUFP Partner Schools)</li>
+            <li>University Placement Support to guide applications</li>
+          </ul>
+          <div class="text-xs opacity-70 mt-2">Aligned with IUFP programme calendar.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer with CTAs -->
+  <footer class="brand-footer">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
+      <div>
+        <img src="iufp-logo.jpg" alt="IUFP logo" class="h-14 w-auto mb-3 md:h-16">
+        <p class="opacity-95 text-sm">
+          IUFP Global Education UK<br>
+          Aldgate Beaufort House Rm 1134,<br>
+          15 St. Botolph Street, London EC3A 7BB
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/aboutus/" class="underline-offset-4 hover:underline">About IUFP</a></li>
+          <li><a href="/students/" class="underline-offset-4 hover:underline">Students</a></li>
+          <li><a href="/partner-schools/" class="underline-offset-4 hover:underline">Partner Schools</a></li>
+          <li><a href="/faqs/" class="underline-offset-4 hover:underline">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Start Your Application</h4>
+        <div class="flex gap-3">
+          <a href="/students/" class="crystal cta cta--student rounded-xl px-5 py-3">IUFP Student</a>
+          <a href="/partner-schools/" class="crystal cta cta--partner rounded-xl px-5 py-3">Partner School</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 py-4 text-xs flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div>© <span id="y"></span> International University Foundation Programme (IUFP)</div>
+        <div class="space-x-4">
+          <a href="/privacy-policy/" class="underline-offset-4 hover:underline">Privacy Policy</a>
+          <a href="/cookie-policy/" class="underline-offset-4 hover:underline">Cookie Policy</a>
+          <a href="/terms/" class="underline-offset-4 hover:underline">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tabs toggle
+    const tabs = document.querySelectorAll('.tab');
+    const direct = document.getElementById('tab-direct');
+    const iy1 = document.getElementById('tab-iy1');
+    tabs.forEach(t=>t.addEventListener('click', ()=>{
+      tabs.forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      if(t.dataset.tab==='direct'){ direct.classList.remove('hidden'); iy1.classList.add('hidden'); }
+      else { iy1.classList.remove('hidden'); direct.classList.add('hidden'); }
+    }));
+    // Footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
